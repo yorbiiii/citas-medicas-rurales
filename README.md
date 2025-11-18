@@ -98,37 +98,37 @@ El proyecto incluye:
 - Blade Templates
 
 ## 3. Instalación del proyecto
-### Clonar repositorio
+### 3.1 Clonar repositorio
 
 git clone https://github.com/yorbiiii/citas-medicas-rurales.git
 cd citas-medicas-rurales
 
-### Instalar dependencias de PHP
+### 3.2 Instalar dependencias de PHP
 composer install
 
-### Instalar dependencias de Node
+### 3.3 Instalar dependencias de Node
 npm install
 
-### Crear archivo .env
+### 3.4 Crear archivo .env
 cp .env.example .env
 
 
 Configurar la base de datos:
 
-DB_DATABASE=citas_medicas_rurales
-DB_USERNAME=root
-DB_PASSWORD=
+- DB_DATABASE=citas_medicas_rurales
+- DB_USERNAME=root
+- DB_PASSWORD=
 
-### Generar llave del proyecto
+### 3.5 Generar llave del proyecto
 php artisan key:generate
 
-### Ejecutar migraciones
+### 3.6 Ejecutar migraciones
 php artisan migrate
 
-### Compilar estilos
+### 3.7 Compilar estilos
 npm run dev
 
-### Iniciar servidor Laravel
+### 3.8 Iniciar servidor Laravel
 php artisan serve
 
 
@@ -148,21 +148,35 @@ http://127.0.0.1:8000
 
 Cada rol tiene su propio panel:
 
-Rol         Ruta
-Paciente	/paciente
-Médico	    /medico
-Centro	    /centro
-Admin	    /admin
+| Paciente                                       | /paciente |
+|------------------------------------------------|-----------|
+| Medico                                         |  /medico  |
+|------------------------------------------------|-----------|
+| Centro                                         |  /centro  |
+|------------------------------------------------|-----------|
+| Admin                                          |  /admin   |
+
+
 
 ## 5. Navegación según tipo de usuario
 
 Implementado en layouts/app.blade.php.
 
-Rol	        Menú visible
-Paciente	Mis citas, Buscar médicos
-Médico	    Agenda de hoy
-Centro	    Panel del centro
-Admin	    Panel admin
+### Menú visible según el rol:
+
+- **Paciente**
+  - Mis citas
+  - Buscar médicos
+
+- **Médico**
+  - Agenda de hoy
+  - Mis pacientes
+
+- **Centro**
+  - Panel del centro
+
+- **Admin**
+  - Panel admin
 
 ## 6. Branding inicial (colores)
 
@@ -176,21 +190,28 @@ Register
 
 Dashboard de cada rol
 
-Paleta usada:
-Nombre	    Color
-Verde       principal	#96A78D
-Verde       pastel	#B6CEB4
-Verde       claro	#D9E9CF
-Fondo       claro	#FFFFFF
+### Paleta usada
+
+| Elemento        | Color         |        Código      |
+|-----------------|---------------|--------------------|
+| Verde principal | #96A78D     | rgb(150,167,141) |
+| Verde pastel    | #B6CEB4     | rgb(182,206,180) |
+| Verde claro     | #D9E9CF     | rgb(217,233,207) |
+| Fondo claro     | #FFFFFF     | rgb(255,255,255) |
+
 
 ## 7. Estado actual del avance (según el docente)
-Requisito solicitado	                        Estado
-Autenticación Laravel/UI	-                   Hecho
-Vistas sin BD (solo formularios/tablas)	-       Hecho
-Navegación por tipo de usuario	-               Hecho
-Roles y redirecciones	-                       Hecho
-Branding inicial	-                           Hecho
-Subido a GitHub	-                               Hecho
+### Requisitos solicitados
+
+| Requisito                                      | Estado |
+|------------------------------------------------|--------|
+| Autenticación Laravel/UI                       |  Hecho |
+| Vistas sin BD (solo formularios / tablas)      |  Hecho |
+| Navegación por tipo de usuario                 |  Hecho |
+| Roles y redirecciones                          |  Hecho |
+| Branding inicial                               |  Hecho |
+| Subido a GitHub                                |  Hecho |
+
 
 ## 8. Integrantes del proyecto (editar)
 
