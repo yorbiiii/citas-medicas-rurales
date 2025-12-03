@@ -45,3 +45,26 @@ Route::middleware('auth')->group(function () {
     Route::get('/medicos/{medico}', [App\Http\Controllers\MedicoController::class, 'show'])
         ->name('medico.show');
 });
+
+//medico
+Route::middleware(['auth'])->group(function () {
+    
+    Route::get('/medico/dashboard', [MedicoController::class, 'dashboard'])
+        ->name('medico.dashboard');
+
+    Route::get('/medico/citas', [MedicoController::class, 'citasDelDia'])
+        ->name('medico.citas');
+
+    Route::get('/medico/historial', [MedicoController::class, 'historial'])
+        ->name('medico.historial');
+
+    Route::get('/medico/horarios', [MedicoController::class, 'horarios'])
+        ->name('medico.horarios');
+
+    Route::post('/medico/horarios/guardar', [MedicoController::class, 'guardarHorario'])
+        ->name('medico.horarios.guardar');
+
+    Route::get('/medico/teleconsulta/{id}', [MedicoController::class, 'teleconsulta'])
+        ->name('medico.teleconsulta');
+
+});

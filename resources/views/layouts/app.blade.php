@@ -32,6 +32,22 @@
                     
                     <!-- Izquierda -->
                     <ul class="navbar-nav me-auto">
+                        {{-- MENÚ SEGÚN ROL --}}
+                        @if(Auth::check())
+
+                            @if(Auth::user()->role == 'medico')
+                                @include('menus.menu_medico')
+                            @endif
+
+                            @if(Auth::user()->role == 'paciente')
+                                @include('menus.menu_paciente')
+                            @endif
+
+                            @if(Auth::user()->role == 'admin')
+                                @include('menus.menu_admin')
+                            @endif
+
+                        @endif
                         @auth
                             @if(auth()->user()->rol === 'paciente')
                                 <li><a class="nav-link text-white" href="{{ route('paciente.inicio') }}">Mis citas</a></li>
