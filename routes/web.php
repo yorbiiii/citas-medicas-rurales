@@ -5,6 +5,7 @@ use App\Http\Controllers\PacienteController;
 use App\Http\Controllers\MedicoController;
 use App\Http\Controllers\CentroController;
 use App\Http\Controllers\AdminController;
+use App\Http\Controllers\BuscarController;
 
 
 // Route::get('/', function () {
@@ -37,4 +38,10 @@ Route::middleware('auth')->group(function () {
 
     Route::get('/admin', [AdminController::class, 'index'])
         ->name('admin.inicio');
+
+    Route::get('/buscar', [App\Http\Controllers\BuscarController::class, 'index'])
+        ->name('buscar.medicos');
+
+    Route::get('/medicos/{medico}', [App\Http\Controllers\MedicoController::class, 'show'])
+        ->name('medico.show');
 });
