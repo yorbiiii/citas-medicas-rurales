@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use App\Models\Especialidad;
 
 class Medico extends Model
 {
@@ -21,5 +22,12 @@ class Medico extends Model
     public function horarios()
     {
         return $this->hasMany(Horario::class, 'medico_id');
+    }
+
+    // AÑADE ESTA RELACIÓN FALTANTE
+    public function especialidad()
+    {
+        // Asumiendo que la columna de clave foránea es 'especialidad_id'
+        return $this->belongsTo(Especialidad::class, 'especialidad_id');
     }
 }

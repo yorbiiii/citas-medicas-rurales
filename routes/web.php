@@ -26,11 +26,6 @@ Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name
 // grupos
 Route::middleware('auth')->group(function () {
 
-    Route::get('/paciente', [PacienteController::class, 'index'])
-        ->name('paciente.inicio');
-
-    Route::get('/medico', [MedicoController::class, 'dashboard']) 
-        ->name('medico.inicio');
 
     Route::get('/centro', [CentroController::class, 'index'])
         ->name('centro.inicio');
@@ -38,37 +33,32 @@ Route::middleware('auth')->group(function () {
     Route::get('/admin', [AdminController::class, 'index'])
         ->name('admin.inicio');
 
-    Route::get('/buscar', [App\Http\Controllers\BuscarController::class, 'index'])
-        ->name('buscar.medicos');
 
-    Route::get('/medicos/{medico}', [App\Http\Controllers\MedicoController::class, 'show'])
-        ->name('medico.show');
 });
 
 //medico
-Route::middleware(['auth'])->group(function () {
+Route::group(['prefix' => 'medico', 'middleware' => 'auth'], function () {
     
+    Route::get('/', [MedicoController::class, 'dashboard'])->name('medico.inicio');
+    Route::get('/citas', [MedicoController::class, 'citasDelDia'])->name('medico.citas');
+    Route::get('/historial', [MedicoController::class, 'historial'])->name('medico.historial');
+    
+    Route::get('/horarios', [MedicoController::class, 'horarios'])->name('medico.horarios');
+    Route::post('/horarios/guardar', [MedicoController::class, 'guardarHorario'])->name('medico.horarios.guardar');
+    
+    Route::get('/teleconsulta/{id}', [MedicoController::class, 'teleconsulta'])->name('medico.teleconsulta');
+    Route::get('/citas/{id}/finalizar', [MedicoController::class, 'finalizarForm'])->name('medico.citas.finalizar');
+    Route::post('/citas/{id}/finalizar', [MedicoController::class, 'finalizarStore'])->name('medico.citas.finalizar.store');
+});
 
-    Route::get('/medico/citas', [MedicoController::class, 'citasDelDia'])
-        ->name('medico.citas');
+Route::middleware(['auth'])->group(function () {
 
-    Route::get('/medico/historial', [MedicoController::class, 'historial'])
-        ->name('medico.historial');
+    Route::get('/paciente', [PacienteController::class, 'index'])
+        ->name('paciente.inicio');
 
-    Route::get('/medico/horarios', [MedicoController::class, 'horarios'])
-        ->name('medico.horarios');
+    Route::post('/paciente/reservar', [PacienteController::class, 'reservar'])
+        ->name('paciente.reservar');
 
-    Route::post('/medico/horarios/guardar', [MedicoController::class, 'guardarHorario'])
-        ->name('medico.horarios.guardar');
-
-    Route::get('/medico/teleconsulta/{id}', [MedicoController::class, 'teleconsulta'])
-        ->name('medico.teleconsulta');
-
-    // Finalizar consulta: mostrar formulario y guardar diagnóstico
-    Route::get('/medico/citas/{id}/finalizar', [MedicoController::class, 'finalizarForm'])
-        ->name('medico.citas.finalizar');
-
-    Route::post('/medico/citas/{id}/finalizar', [MedicoController::class, 'finalizarStore'])
-        ->name('medico.citas.finalizar.store');
-
+    Route::get('/buscar', [BuscarController::class, 'index'])
+        ->name('buscar.medicos');
 });

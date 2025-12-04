@@ -35,23 +35,23 @@
                         {{-- MENÚ SEGÚN ROL --}}
                         @if(Auth::check())
 
-                            @if(Auth::user()->role == 'medico')
+                            @if(auth()->user()->rol === 'medico')
                                 @include('menu.menu_medico')
                             @endif
 
-                            @if(Auth::user()->role == 'paciente')
-                                @include('menu.menu_paciente')
+                            @if(auth()->user()->rol === 'paciente')
+                                @includeIf('menu.menu_paciente')
                             @endif
 
-                            @if(Auth::user()->role == 'admin')
-                                @include('menu.menu_admin')
+                            @if(auth()->user()->rol === 'admin')
+                                @includeIf('menu.menu_admin')
                             @endif
 
                         @endif
                         @auth
-                            @if(auth()->user()->rol === 'paciente')
+                                @if(auth()->user()->rol === 'paciente')
                                 <li><a class="nav-link text-white" href="{{ route('paciente.inicio') }}">Mis citas</a></li>
-                                <li><a class="nav-link text-white" href="#">Buscar médicos</a></li>
+                                <li><a class="nav-link text-white" href="{{ route('buscar.medicos') }}">Buscar médicos</a></li>
                             @elseif(auth()->user()->rol === 'medico')
                                 <li><a class="nav-link text-white" href="{{ route('medico.inicio') }}">Agenda de hoy</a></li>
                             @elseif(auth()->user()->rol === 'centro')

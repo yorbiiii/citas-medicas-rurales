@@ -7,6 +7,9 @@ use Illuminate\Database\Eloquent\Model;
 class Cita extends Model
 {
     protected $guarded = ['id'];
+    protected $casts = [
+    'fecha_hora' => 'datetime',
+];
 
     public function paciente()
     {

@@ -5,14 +5,17 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Specialty extends Model
+class Especialidad extends Model
 {
     use HasFactory;
 
+    // Forzar el nombre correcto de la tabla (plural irregular en español)
+    protected $table = 'especialidades';
+
     protected $fillable = ['nombre', 'descripcion'];
 
-    public function doctors()
+    public function medicos()
     {
-        return $this->hasMany(Doctor::class, 'specialty_id'); 
+        return $this->hasMany(Medico::class, 'especialidad_id');
     }
 }
