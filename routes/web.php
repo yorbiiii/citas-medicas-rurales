@@ -40,7 +40,7 @@ Route::middleware('auth')->group(function () {
 Route::group(['prefix' => 'medico', 'middleware' => 'auth'], function () {
     
     Route::get('/', [MedicoController::class, 'dashboard'])->name('medico.inicio');
-    // Ruta alternativa/alias usada por algunas vistas
+
     Route::get('/dashboard', [MedicoController::class, 'dashboard'])->name('medico.dashboard');
     Route::get('/citas', [MedicoController::class, 'citas'])->name('medico.citas');
     Route::get('/historial', [MedicoController::class, 'historial'])->name('medico.historial');
@@ -53,13 +53,10 @@ Route::group(['prefix' => 'medico', 'middleware' => 'auth'], function () {
     Route::post('/citas/{id}/finalizar', [MedicoController::class, 'finalizarStore'])->name('medico.citas.finalizar.store');
 });
 
+//paciente
 Route::middleware(['auth'])->group(function () {
 
-    Route::get('/paciente', [PacienteController::class, 'index'])
-        ->name('paciente.inicio');
+    Route::get('/paciente', [PacienteController::class, 'index'])->name('paciente.inicio');
+    Route::post('/paciente/reservar', [PacienteController::class, 'reservar'])->name('paciente.reservar');
 
-    Route::post('/paciente/reservar', [PacienteController::class, 'reservar'])
-        ->name('paciente.reservar');
-
-    // (Ruta de búsqueda eliminada — no se usa)
 });

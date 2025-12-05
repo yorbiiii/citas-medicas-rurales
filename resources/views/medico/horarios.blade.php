@@ -3,7 +3,6 @@
 @section('content')
 <div class="container">
     <h2>Mis horarios</h2>
-
     <table class="table mt-4">
         <thead>
             <tr>
@@ -22,9 +21,7 @@
             @endforeach
         </tbody>
     </table>
-
     <hr>
-
     <h4>Agregar nuevo horario</h4>
     <form method="POST" action="{{ route('medico.horarios.guardar') }}">
         @csrf

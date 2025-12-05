@@ -7,9 +7,6 @@ use Illuminate\Database\Eloquent\Model;
 class Diagnostico extends Model
 {
     protected $guarded = ['id'];
-    
-    // Opcionalmente, para ser más explícitos:
-    // protected $fillable = ['cita_id', 'medico_id', 'paciente_id', 'diagnostico'];
 
     public function cita()
     {
